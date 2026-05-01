@@ -14,7 +14,6 @@ public class AppletCalculator extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(5, 5));
 
-
         // Create the display screen (It's not editable and right-aligned)
         screen = new JTextField("0");
         screen.setEditable(false);
@@ -27,11 +26,11 @@ public class AppletCalculator extends JFrame implements ActionListener {
         buttonPanel.setLayout(new GridLayout(5, 4, 5, 5));
 
         String[] buttons = {
-            "C", "", "", "←",
-            "7", "8", "9", "×",
-            "4", "5", "6", "-",
-            "1", "2", "3", "+",
-            ".", "0", "/", "="
+                "C", "", "", "←",
+                "7", "8", "9", "×",
+                "4", "5", "6", "-",
+                "1", "2", "3", "+",
+                ".", "0", "/", "="
         };
 
         for (String text : buttons) {
@@ -43,7 +42,6 @@ public class AppletCalculator extends JFrame implements ActionListener {
                 buttonPanel.add(button);
             }
         }
-
         add(buttonPanel, BorderLayout.CENTER);
         setVisible(true);
     }
@@ -53,7 +51,7 @@ public class AppletCalculator extends JFrame implements ActionListener {
         String command = e.getActionCommand();
 
         // Handle clear and backspace operations
-        if (Character.isDigit(command.charAt(0))){
+        if (Character.isDigit(command.charAt(0))) {
             if (isNewInput || screen.getText().equals("0")) {
                 screen.setText(command);
                 isNewInput = false;
@@ -63,13 +61,12 @@ public class AppletCalculator extends JFrame implements ActionListener {
         }
 
         // Handle operator buttons
-        else if (command.equals(".")){
+        else if (command.equals(".")) {
             if (!screen.getText().contains(".")) {
                 screen.setText(screen.getText() + ".");
                 isNewInput = false;
             }
-        }
-        else if (command.equals("←")) {
+        } else if (command.equals("←")) {
             String currentText = screen.getText();
             if (currentText.length() > 1) {
                 screen.setText(currentText.substring(0, currentText.length() - 1));
@@ -77,29 +74,27 @@ public class AppletCalculator extends JFrame implements ActionListener {
                 screen.setText("0");
                 isNewInput = true;
             }
-        }
-        else if (command.equals("C")) {
+        } else if (command.equals("C")) {
             screen.setText("0");
             firstOperand = 0;
             operator = "";
             isNewInput = true;
-        
+
         } else if (command.equals("CE")) {
             screen.setText("0");
             isNewInput = true;
-        }
-        else if (command.equals("=")){
+        } else if (command.equals("=")) {
             calculate(Double.parseDouble(screen.getText()));
             operator = "";
             isNewInput = true;
-        }
-        else {
+        } else {
             firstOperand = Double.parseDouble(screen.getText());
             operator = command;
             isNewInput = true;
         }
     }
 
+    // Method to perform the calculation based on the operator and operands
     private void calculate(double secondOperand) {
         switch (operator) {
             case "+":
@@ -121,11 +116,8 @@ public class AppletCalculator extends JFrame implements ActionListener {
         }
         screen.setText(screen.getText().replaceAll("\\.0$", "")); // Remove trailing .0 for integers
     }
-    
 
     public static void main(String[] args) {
         new AppletCalculator();
     }
-
-    
 }
