@@ -1,3 +1,4 @@
+package Applets1;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
