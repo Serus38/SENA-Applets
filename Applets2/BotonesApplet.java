@@ -45,7 +45,7 @@ public class BotonesApplet extends JFrame implements ActionListener {
         minor = new JButton("Menor");
         btnClear = new JButton("Limpiar");
 
-        // Agregar listeners
+        // Listeners
         JButton[] botones = {btnAdd, btnSubtract, btnMultiply, btnDivide, sqRt1, sqRt2, major, minor, btnClear};
         for (JButton btn : botones) {
             btn.addActionListener(this);
@@ -71,7 +71,6 @@ public class BotonesApplet extends JFrame implements ActionListener {
         add(panelTop, BorderLayout.NORTH);
         add(panelCentralContenedor, BorderLayout.CENTER);
 
-        // Centrar en pantalla y mostrar
         setLocationRelativeTo(null);
         setVisible(true);
     }
@@ -126,7 +125,6 @@ public class BotonesApplet extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        // Ejecutar en el hilo de despacho de eventos para evitar problemas de interfaz
-        SwingUtilities.invokeLater(() -> new BotonesApplet());
+        new BotonesApplet();
     }
 }
